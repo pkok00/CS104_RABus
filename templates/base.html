@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UNI-LINK Transit Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap');
+        body { font-family: 'Prompt', sans-serif; }
+        
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+    </style>
+</head>
+<body class="bg-slate-50 flex h-screen overflow-hidden text-gray-800">
+
+    <aside class="w-64 bg-slate-900 text-white flex flex-col shadow-2xl z-20">
+        <div class="h-16 flex items-center justify-center border-b border-slate-700 bg-slate-950">
+            <h1 class="text-xl font-bold tracking-wider">
+                <i class="fa-solid fa-bus-simple text-blue-400 mr-2"></i> UNI-LINK
+            </h1>
+        </div>
+        <nav class="flex-1 px-4 py-6 space-y-2 overflow-y-auto">
+            <a href="/" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-slate-800 transition-colors {% if request.path == '/' %}bg-blue-600 hover:bg-blue-600{% endif %}">
+                <i class="fa-solid fa-chart-pie w-5"></i> ภาพรวมระบบ
+            </a>
+            <a href="/trip_logs" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-slate-800 transition-colors {% if 'trip_logs' in request.path %}bg-blue-600 hover:bg-blue-600{% endif %}">
+                <i class="fa-solid fa-route w-5"></i> บันทึกการวิ่ง
+            </a>
+            <a href="/vehicles" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-slate-800 transition-colors {% if 'vehicle' in request.path %}bg-blue-600 hover:bg-blue-600{% endif %}">
+                <i class="fa-solid fa-van-shuttle w-5"></i> รถโดยสาร
+            </a>
+            <a href="/routes" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-slate-800 transition-colors {% if 'route' in request.path %}bg-blue-600 hover:bg-blue-600{% endif %}">
+                <i class="fa-solid fa-map-location-dot w-5"></i> สายรถ
+            </a>
+            <a href="/drivers" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-slate-800 transition-colors {% if 'driver' in request.path %}bg-blue-600 hover:bg-blue-600{% endif %}">
+                <i class="fa-solid fa-id-card w-5"></i> พนักงานขับรถ
+            </a>
+            <a href="/bus_stops" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-slate-800 transition-colors {% if 'bus_stop' in request.path %}bg-blue-600 hover:bg-blue-600{% endif %}">
+                <i class="fa-solid fa-signs-post w-5"></i> ป้ายรถเมล์
+            </a>
+        </nav>
+        <div class="p-4 border-t border-slate-700 text-xs text-slate-400 text-center">
+            CS104 Project
+        </div>
+    </aside>
+
+    <main class="flex-1 flex flex-col h-screen overflow-hidden relative">
+        <header class="h-16 bg-white shadow-sm flex items-center px-8 justify-between z-10 border-b border-gray-200">
+            <h2 class="text-xl font-semibold text-gray-700">ระบบบริหารจัดการการเดินรถสาธารณะ</h2>
+            <div class="flex items-center gap-3 text-gray-600">
+                <div class="text-right">
+                    <p class="text-sm font-bold">Admin</p>
+                    <p class="text-xs text-green-600">● Online</p>
+                </div>
+                <i class="fa-solid fa-circle-user text-3xl text-slate-300"></i>
+            </div>
+        </header>
+
+        <div class="flex-1 overflow-y-auto p-8">
+            <div class="max-w-7xl mx-auto">
+                {% block content %}{% endblock %}
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>

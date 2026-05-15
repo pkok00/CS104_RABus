@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="max-w-xl mx-auto bg-white p-8 rounded shadow mt-10">
+    <h2 class="text-2xl font-bold mb-6">✏️ แก้ไขข้อมูลพนักงานขับรถ</h2>
+    <form action="/edit_driver/{{ item.id }}" method="POST" class="space-y-4">
+        <div><label class="block text-sm">ชื่อ-สกุล</label><input type="text" name="name" value="{{ item.name }}" required class="border p-2 rounded w-full"></div>
+        <div><label class="block text-sm">เบอร์โทร</label><input type="text" name="phone" value="{{ item.phone }}" required class="border p-2 rounded w-full"></div>
+        <div><label class="block text-sm">กะทำงาน</label>
+            <select name="shift" class="border p-2 rounded w-full">
+                <option value="Morning" {% if item.shift == 'Morning' %}selected{% endif %}>Morning</option>
+                <option value="Afternoon" {% if item.shift == 'Afternoon' %}selected{% endif %}>Afternoon</option>
+                <option value="Night" {% if item.shift == 'Night' %}selected{% endif %}>Night</option>
+            </select>
+        </div>
+        <button type="submit" class="bg-yellow-500 text-white px-4 py-2 rounded w-full">บันทึก</button>
+    </form>
+</div>
+{% endblock %}

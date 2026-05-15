@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="flex justify-between items-center mb-6">
+    <h2 class="text-2xl font-bold text-gray-800">จัดการสายรถ (Routes)</h2>
+</div>
+
+<div class="bg-white p-6 rounded-lg shadow mb-6">
+    <h3 class="text-lg font-semibold mb-4">➕ เพิ่มสายรถใหม่</h3>
+    <form action="/add_route" method="POST" class="flex flex-wrap gap-4 items-end">
+        <div class="w-full md:w-1/4">
+            <label class="block text-sm text-gray-600">สายรถ (เช่น 39)</label>
+            <input type="text" name="route_num" required class="border p-2 rounded w-full">
+        </div>
+        <div class="w-full md:w-1/4">
+            <label class="block text-sm text-gray-600">ต้นทาง</label>
+            <input type="text" name="origin" required class="border p-2 rounded w-full">
+        </div>
+        <div class="w-full md:w-1/4">
+            <label class="block text-sm text-gray-600">ปลายทาง</label>
+            <input type="text" name="destination" required class="border p-2 rounded w-full">
+        </div>
+        <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 h-[42px]">บันทึก</button>
+    </form>
+</div>
+
+<div class="bg-white rounded-lg shadow overflow-hidden">
+    <table class="w-full text-left border-collapse">
+        <thead>
+            <tr class="bg-gray-200 text-gray-700">
+                <th class="p-3 border-b">ID</th>
+                <th class="p-3 border-b">สายรถ</th>
+                <th class="p-3 border-b">ต้นทาง</th>
+                <th class="p-3 border-b">ปลายทาง</th>
+                <th class="p-3 border-b">จัดการ</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for r in items %}
+            <tr class="hover:bg-gray-50 border-b">
+                <td class="p-3">{{ r.id }}</td>
+                <td class="p-3 font-semibold text-blue-600">สาย {{ r.route_num }}</td>
+                <td class="p-3">{{ r.origin }}</td>
+                <td class="p-3">{{ r.destination }}</td>
+                <td class="p-3 whitespace-nowrap">
+                    <a href="/edit_route/{{ r.id }}" class="text-yellow-600 hover:underline mr-2">✏️ แก้ไข</a>
+                    <a href="/delete_route/{{ r.id }}" class="text-red-600 hover:underline" onclick="return confirm('ลบข้อมูลสายรถนี้?');">🗑️ ลบ</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="max-w-xl mx-auto bg-white p-8 rounded shadow mt-10">
+    <h2 class="text-2xl font-bold mb-6">✏️ แก้ไขข้อมูลป้ายรถเมล์</h2>
+    <form action="/edit_bus_stop/{{ item.id }}" method="POST" class="space-y-4">
+        <div><label class="block text-sm">ชื่อป้าย</label><input type="text" name="stop_name" value="{{ item.stop_name }}" required class="border p-2 rounded w-full"></div>
+        <div><label class="block text-sm">โซน</label><input type="text" name="zone" value="{{ item.zone }}" required class="border p-2 rounded w-full"></div>
+        <button type="submit" class="bg-yellow-500 text-white px-4 py-2 rounded w-full">บันทึก</button>
+    </form>
+</div>
+{% endblock %}

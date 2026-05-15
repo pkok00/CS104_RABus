@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2 class="text-2xl font-bold mb-4">พนักงานขับรถ (Drivers)</h2>
+<div class="bg-white p-6 rounded shadow mb-6">
+    <form action="/add_driver" method="POST" class="flex flex-wrap gap-4 items-end">
+        <div><label class="block text-sm">ชื่อ-สกุล</label><input type="text" name="name" required class="border p-2 rounded"></div>
+        <div><label class="block text-sm">เบอร์โทร</label><input type="text" name="phone" required class="border p-2 rounded"></div>
+        <div><label class="block text-sm">กะทำงาน</label>
+            <select name="shift" class="border p-2 rounded"><option value="Morning">Morning</option><option value="Afternoon">Afternoon</option><option value="Night">Night</option></select>
+        </div>
+        <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">บันทึก</button>
+    </form>
+</div>
+<div class="bg-white rounded shadow overflow-hidden">
+    <table class="w-full text-left">
+        <tr class="bg-gray-200"><th class="p-3">ID</th><th class="p-3">ชื่อ</th><th class="p-3">โทร</th><th class="p-3">กะ</th><th class="p-3">จัดการ</th></tr>
+        {% for d in items %}<tr class="border-b"><td class="p-3">{{ d.id }}</td><td class="p-3">{{ d.name }}</td><td class="p-3">{{ d.phone }}</td><td class="p-3">{{ d.shift }}</td>
+            <td class="p-3"><a href="/edit_driver/{{ d.id }}" class="text-yellow-600 mr-2">✏️ แก้ไข</a><a href="/delete_driver/{{ d.id }}" class="text-red-600" onclick="return confirm('ลบ?');">🗑️ ลบ</a></td>
+        </tr>{% endfor %}
+    </table>
+</div>
+{% endblock %}

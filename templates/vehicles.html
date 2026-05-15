@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2 class="text-2xl font-bold mb-4">จัดการรถโดยสาร (Vehicles)</h2>
+<div class="bg-white p-6 rounded shadow">
+    <table class="w-full text-left">
+        <tr class="bg-gray-200"><th class="p-3">ID</th><th class="p-3">ทะเบียน</th><th class="p-3">สถานะ</th><th class="p-3">จัดการ</th></tr>
+        {% for v in items %}
+        <tr class="border-b">
+            <td class="p-3">{{ v.id }}</td><td class="p-3">{{ v.plate }}</td><td class="p-3">{{ v.status }}</td>
+            <td class="p-3">
+                <a href="/edit_vehicle/{{ v.id }}" class="text-yellow-600 hover:underline mr-2">✏️ แก้ไข</a>
+                <a href="/delete_vehicle/{{ v.id }}" class="text-red-600 hover:underline" onclick="return confirm('แน่ใจหรือไม่ว่าต้องการลบทิ้ง?');">🗑️ ลบ</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}

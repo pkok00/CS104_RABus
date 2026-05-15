@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="max-w-xl mx-auto bg-white p-8 rounded-lg shadow mt-10">
+    <h2 class="text-2xl font-bold text-gray-800 mb-6">✏️ แก้ไขข้อมูลสายรถ</h2>
+    
+    <form action="/edit_route/{{ route.id }}" method="POST" class="space-y-4">
+        <div>
+            <label class="block text-sm text-gray-600 mb-1">สายรถ</label>
+            <input type="text" name="route_num" value="{{ route.route_num }}" required class="border p-2 rounded w-full bg-gray-50">
+        </div>
+        <div>
+            <label class="block text-sm text-gray-600 mb-1">ต้นทาง</label>
+            <input type="text" name="origin" value="{{ route.origin }}" required class="border p-2 rounded w-full bg-gray-50">
+        </div>
+        <div>
+            <label class="block text-sm text-gray-600 mb-1">ปลายทาง</label>
+            <input type="text" name="destination" value="{{ route.destination }}" required class="border p-2 rounded w-full bg-gray-50">
+        </div>
+        
+        <div class="flex gap-4 mt-6">
+            <button type="submit" class="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600 flex-1">บันทึกการแก้ไข</button>
+            <a href="/routes" class="bg-gray-400 text-white px-4 py-2 rounded hover:bg-gray-500 text-center flex-1">ยกเลิก</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

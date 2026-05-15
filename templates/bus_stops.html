@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2 class="text-2xl font-bold mb-4">ป้ายรถเมล์ (Bus Stops)</h2>
+<div class="bg-white p-6 rounded shadow mb-6">
+    <form action="/add_bus_stop" method="POST" class="flex gap-4 items-end">
+        <div><label class="block text-sm">ชื่อป้าย</label><input type="text" name="stop_name" required class="border p-2 rounded"></div>
+        <div><label class="block text-sm">โซน</label><input type="text" name="zone" required class="border p-2 rounded"></div>
+        <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">บันทึก</button>
+    </form>
+</div>
+<div class="bg-white rounded shadow overflow-hidden">
+    <table class="w-full text-left">
+        <tr class="bg-gray-200"><th class="p-3">ID</th><th class="p-3">ป้าย</th><th class="p-3">โซน</th><th class="p-3">จัดการ</th></tr>
+        {% for b in items %}<tr class="border-b"><td class="p-3">{{ b.id }}</td><td class="p-3">{{ b.stop_name }}</td><td class="p-3">{{ b.zone }}</td>
+            <td class="p-3"><a href="/edit_bus_stop/{{ b.id }}" class="text-yellow-600 mr-2">✏️ แก้ไข</a><a href="/delete_bus_stop/{{ b.id }}" class="text-red-600" onclick="return confirm('ลบ?');">🗑️ ลบ</a></td>
+        </tr>{% endfor %}
+    </table>
+</div>
+{% endblock %}
