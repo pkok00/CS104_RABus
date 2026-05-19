@@ -5,15 +5,14 @@ app = Flask(__name__)
 
 def open_database():
     connection = sqlite3.connect('database.db')
+    connection.execute('PRAGMA foreign_keys = ON')
     connection.row_factory = sqlite3.Row
     return connection
 
 @app.route('/')
 def index():
     db = open_database()
-
     total_vehicles = db.execute('SELECT COUNT(*) FROM Vehicles').fetchone()[0]
-
     active_vehicles = db.execute(
         "SELECT COUNT(*) FROM Vehicles WHERE status = 'Active'"
     ).fetchone()[0]
