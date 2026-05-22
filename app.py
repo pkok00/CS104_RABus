@@ -4,7 +4,7 @@ from flask import Flask, render_template, request, redirect, url_for
 app = Flask(__name__)
 
 def open_database():
-    connection = sqlite3.connect('database.db')
+    connection = sqlite3.connect('/home/pkok/mysite/database.db', timeout=10)
     connection.execute('PRAGMA foreign_keys = ON')
     connection.row_factory = sqlite3.Row
     return connection
