@@ -4,7 +4,7 @@
 
 <div class="bg-white p-6 rounded shadow mb-6">
     <h3 class="font-bold mb-4 text-blue-600">➕ บันทึกรอบวิ่งใหม่</h3>
-    <form action="/add_trip_log" method="POST" class="grid grid-cols-1 md:grid-cols-5 gap-4 items-end">
+    <form action="/add_trip_log" method="POST" class="grid grid-cols-1 md:grid-cols-6 gap-4 items-end">
         <div><label class="block text-xs">วันที่</label><input type="date" name="log_date" required class="border p-2 rounded w-full text-sm"></div>
         <div><label class="block text-xs">รถโดยสาร</label>
             <select name="vehicle_id" class="border p-2 rounded w-full text-sm">
@@ -19,6 +19,14 @@
         <div><label class="block text-xs">สายรถ</label>
             <select name="route_id" class="border p-2 rounded w-full text-sm">
                 {% for r in routes %}<option value="{{ r.route_id }}">สาย {{ r.route_num }}</option>{% endfor %}
+            </select>
+        </div>
+        <div><label class="block text-xs">สถานะ</label>
+            <select name="status" class="border p-2 rounded w-full text-sm" required>
+                <option value="Scheduled">Scheduled (รอรอบวิ่ง)</option>
+                <option value="In Progress">In Progress (กำลังวิ่ง)</option>
+                <option value="Completed">Completed (เสร็จสิ้น)</option>
+                <option value="Delayed">Delayed (ล่าช้า)</option>
             </select>
         </div>
         <button type="submit" class="bg-green-600 text-white p-2 rounded hover:bg-green-700">บันทึกรอบวิ่ง</button>
