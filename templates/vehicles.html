@@ -1,6 +1,26 @@
 {% extends 'base.html' %}
 {% block content %}
 <h2 class="text-2xl font-bold mb-4">จัดการรถโดยสาร (Vehicles)</h2>
+
+<div class="bg-white p-6 rounded shadow mb-6">
+    <h3 class="text-lg font-bold mb-3 text-gray-700">+ เพิ่มรถโดยสารคันใหม่</h3>
+    <form action="{{ url_for('add_vehicle') }}" method="POST" class="flex flex-col sm:flex-row gap-4 items-center">
+        
+        <input type="text" name="plate_number" placeholder="กรอกเลขทะเบียน (เช่น 11-9999)" required 
+               class="border border-gray-300 p-2 rounded w-full sm:flex-1 focus:outline-none focus:ring-2 focus:ring-blue-500">
+        
+        <select name="status" class="border border-gray-300 p-2 rounded w-full sm:flex-1 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <option value="Active">Active (พร้อมใช้งาน)</option>
+            <option value="Maintenance">Maintenance (ซ่อมบำรุง)</option>
+        </select>
+        
+        <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded font-medium w-full sm:w-auto transition">
+            บันทึกข้อมูล
+        </button>
+        
+    </form>
+</div>
+
 <div class="bg-white p-6 rounded shadow">
     <table class="w-full text-left">
         <tr class="bg-gray-200"><th class="p-3">ID</th><th class="p-3">ทะเบียน</th><th class="p-3">สถานะ</th><th class="p-3">จัดการ</th></tr>
